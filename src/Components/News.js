@@ -44,6 +44,8 @@ const News=(props) => {
     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=bd0bf1ce93004c95a41fd34fda9d823c&page=${page}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parseData = await data.json();
+    console.log(parseData);
+
     //console.log(parseData);
     
       setArticles(articles.concat(parseData.articles))

@@ -7,15 +7,24 @@ import { BrowserRouter as Router, Route, Routes}from "react-router-dom";
 function App() {
   let pageSize=5;
   const [progress, setProgress] = useState(0);
+
+  const style = {
+    backgroundColor: '#F4F4F4',
+    padding: '20px', // Example padding
+    height: '100%', // Full viewport height (optional)
+    color: '#333', // Example text color
+  }
+
     return (
-      <div>
+      <div style={style}>
         <Router>
         <LoadingBar
         height={3}
         color='#f11946'
         progress={progress}
-      />
+        />
           <Navbar/>
+          
             <Routes>
               <Route exact path="/" element={<News setProgress={setProgress} key='general' pageSize={pageSize} country='us' category='general'/>} />   
               <Route exact path="/business" element={<News setProgress={setProgress} key='business' pageSize={pageSize} country='us' category='Business'/>} />
