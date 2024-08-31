@@ -127,7 +127,7 @@ const News = (props) => {
   const updateNews = async (pageNumber) => {
     try {
       props.setProgress(10);
-      const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=1d3f3019476e4d0aafdcba35615b8526&page=${pageNumber}&pageSize=${props.pageSize}`;
+      const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=bd0bf1ce93004c95a41fd34fda9d823c&page=${pageNumber}&pageSize=${props.pageSize}`;
       setLoading(true);
       let response = await fetch(url);
       
