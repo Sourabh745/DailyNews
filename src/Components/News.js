@@ -9,7 +9,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  //const [hasMore, setHasMore] = useState(true);
 
 
   const capitalLetter = (string) => {
@@ -42,7 +42,7 @@ const News = (props) => {
 
       setArticles(prevArticles => page === 1 ? parseData.data : [...prevArticles, ...parseData.data]);
       setTotalResults(parseData.meta.found); // Total available results
-      setHasMore(parseData.meta.page < Math.ceil(parseData.meta.found / props.pageSize)); // Check if there are more pages
+      //setHasMore(parseData.meta.page < Math.ceil(parseData.meta.found / props.pageSize)); // Check if there are more pages
       setLoading(false);
       props.setProgress(100);
     } catch (error) {
