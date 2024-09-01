@@ -9,6 +9,8 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+
 
   const capitalLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -17,7 +19,7 @@ const News = (props) => {
   const updateNews = async (newPage = 1) => {
     try {
       props.setProgress(10);
-      const url = `https://api.thenewsapi.com/v1/news/top?locale=${props.country}&categories=${props.category}&api_token=DnjL1ffZ9Tm8zkMmE4Y8JKoKU11VDZtWxx1L5gxS&limit=${props.pageSize}&page=${pageNumber}`;
+      const url = `https://api.thenewsapi.com/v1/news/top?locale=${props.country}&categories=${props.category}&api_token=DnjL1ffZ9Tm8zkMmE4Y8JKoKU11VDZtWxx1L5gxS&limit=${props.pageSize}&page=${page}`;
       setLoading(true);
       let response = await fetch(url);
 
@@ -38,7 +40,7 @@ const News = (props) => {
       let parseData = await response.json();
       props.setProgress(70);
 
-      setArticles(prevArticles => pageNumber === 1 ? parseData.data : [...prevArticles, ...parseData.data]);
+      setArticles(prevArticles => page === 1 ? parseData.data : [...prevArticles, ...parseData.data]);
       setTotalResults(parseData.meta.found); // Total available results
       setHasMore(parseData.meta.page < Math.ceil(parseData.meta.found / props.pageSize)); // Check if there are more pages
       setLoading(false);
@@ -81,7 +83,7 @@ const News = (props) => {
                   descriptions={element.description ? element.description.slice(0, 88) : ""}
                   urlImage={element.image_url}
                   newsUrl={element.url}
-                  author="" // The response does not include author information
+                  //author="" // The response does not include author information
                   source={element.source}
                 />
               </div>
